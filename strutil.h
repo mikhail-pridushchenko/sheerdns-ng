@@ -18,6 +18,7 @@
 
 void string_purify (unsigned char *s);
 void string_chomp (unsigned char *s);
+void string_wash (unsigned char *p);
 
 char **string_split (const char *s, char c, size_t max, int multi);
 int string_present (char *s, char **a);
