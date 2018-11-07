@@ -35,6 +35,9 @@ hex_hash (unsigned char *s) {
     return h; }
 
 #ifdef STANDALONE
+
+#include <sys/stat.h>
+
 int
 main (int argc, char **argv) {
     if (argc > 1) {
@@ -43,7 +46,7 @@ main (int argc, char **argv) {
 	unsigned char *s;
 	s = (unsigned char *) hex_hash ((unsigned char *) argv[1]);
 	snprintf (buf, sizeof (buf), SHEERDNS_DIR "/%s/%s", s, argv[1]);
-	mkdir (buf);
+	mkdir (buf, 0700);
 	l = strlen ((char *) s);
 	write (1, s, l);
 	write (1, "\n", 1); }

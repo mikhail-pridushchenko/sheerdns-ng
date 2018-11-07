@@ -1,9 +1,11 @@
 
-CFLAGS=-Wall -g -O0 -ansi -pedantic
+CFLAGS=-Wall -g -O0 -std=gnu90 -pedantic
 
 SRCS=$(wildcard *.c)
 
-all: sheerdns sheerdnshash sheerdns.ps
+all: sheerdns sheerdnshash
+
+docs: sheerdns.ps
 
 OBJECTS=$(SRCS:.c=.o)
 
@@ -27,6 +29,7 @@ sheerdns.ps:
 
 install: all
 	install sheerdnshash sheerdns /usr/sbin/
-	install sheerdns.8 /usr/share/man/man8/
+
+install-docs: docs
 	install sheerdns.8 /usr/man/man8/
 
