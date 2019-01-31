@@ -169,7 +169,7 @@ main (int argc, char **argv) {
 		exit (1); }}}
 
     make_directories ();
-    
+
     chdir(SHEERDNS_DIR);
     if (chroot(SHEERDNS_DIR) != 0) {
 	strcat(unable_chroot, SHEERDNS_DIR);
@@ -577,6 +577,8 @@ pp.nnnn is the percentage of the year passed: */
 	flags |= 0x0400; }				/* authority-bit 0x0400 */
 
   empty_packet:
+    if (qtype == REQ_A && orig_qtype == REQ_A && nanswers == 0)
+	    flags |= 3;
     p1 = out_buf;		/* goto start of packet to fill in total counts */
     *p1++ = id >> 8;
     *p1++ = id & 0xFF;
